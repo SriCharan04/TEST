@@ -29,6 +29,14 @@ void geometry()
 		glVertex2f(radius*cos(PI/500*k),radius*sin(PI/500*k));
 	}
 	glEnd();
+
+	glPointSize(2);
+	glBegin(GL_POINTS);
+	for (int k = 0;k < 1000;k++)
+	{
+		glVertex2f(random_points[k][0],random_points[k][1]);
+	}
+	glEnd();
 	glFlush();
 }
 void display(int argc, char** argv)
@@ -61,8 +69,8 @@ int main(int argc, char** argv)
 	input_radius();
 	for (int i=0;i <= 999; i++)
 	{
-		random_points[i][0] = (rand() % 100);
-		random_points[i][1] = (rand() % 100);
+		random_points[i][0] = (rand() % 300)-150;
+		random_points[i][1] = (rand() % 300)-150;
 	};
 	
 	for (int j=0; j <= 999; j++)
@@ -80,10 +88,10 @@ int main(int argc, char** argv)
 	}
 	/*We have area_in/area_out = (pi*r^2)/(a^2-pi*r^2)*/
 	printf("The current status of inside and outside are %i and %i\n",inside, outside);
-	float ratio = inside/outside;
-	printf("The experimental ratio is %f \n",ratio);
+	/*float ratio = inside/outside;
+	printf("The experimental ratio is %f \n",ratio);*/
 	printf("%s","But the theoretical ratio is (pi*r^2)/(a^2-pi*r^2)\n");
-	double pi = (ratio*10000)/((ratio+1)*(radius^2));
+	double pi = (inside*90000)/((inside+outside)*(radius^2));
 	printf("Therefore the estimated value of pi through this monte Carlo Simulation is %f \n", pi);
 	printf("This Graphic object depicts the position of points in the circle and square (feel free to use Alt + F4, to close the window object)\n");
 	display(argc, argv);
