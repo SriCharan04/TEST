@@ -55,7 +55,7 @@ void input_radius()
 	printf("%s","Give a valid radius, less than 250: ");
 	scanf("%i", &radius);
 
-	if (radius > 250)
+	if (radius > 250 || radius < 0)
 	{
 		printf("%s","Please enter a valid radius\n");
 		exit(-1);
